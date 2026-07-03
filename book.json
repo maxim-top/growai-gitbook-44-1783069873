@@ -1,0 +1,151 @@
+{
+    "title": "蓝莺 IM - 打造新一代智能应用，使用蓝莺ChatAI SDK",
+    "description": "API文档及文章分享",
+    "author": "jinhai",
+    "output.name": "site",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "root": ".",
+    "styles": {
+        "website": "assets/styles/website.css"
+    },
+    "structure": {
+        "readme": "README.md"
+    },
+    "plugins": [
+        "edit-link@^2.0.2",
+        "fontsettings@^2.0.0",
+        "-sharing",
+        "sharing-plus@^0.0.2",
+        "-highlight",
+        "prism@^2.1.0",
+        "prism-themes@^0.0.2",
+        "-lunr",
+        "-search",
+        "advanced-emoji@^0.2.1",
+        "expandable-chapters-small@^0.1.7",
+        "terminal@^0.3.2",
+        "code@^0.1.0",
+        "splitter@^0.0.8",
+        "favicon@^0.0.2",
+        "github-tables@^0.0.2",
+        "image-captions@^3.1.0",
+        "canonical-link@^2.0.3",
+        "auto-scroll-table@^0.0.5",
+        "lanying-growai-logo@^0.0.3",
+        "lanying-grow-ai-intopic-toc@^1.1.3",
+        "lanying-grow-ai-meta@^0.1.16",
+        "3-ba@^0.9.0",
+        "ga4@^1.0.1",
+        "lanying-grow-ai@^1.0.13",
+        "lanying-grow-ai-theme@^1.0.9",
+        "lanying-grow-ai-expandable-chapters@^0.1.8",
+        "lanying-grow-ai-image-captions@^3.1.1",
+        "tbfed-pagefooter@^0.0.1"
+    ],
+
+    "pluginsConfig": {
+        "theme-default": {
+            "showLevel": false
+        },
+        "prism": {
+            "css": [
+                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+            ]
+        },
+        "include-codeblock": {
+            "template": "ace",
+            "unindent": true,
+            "edit": true
+        },
+        "tbfed-pagefooter": {
+            "copyright": "© 2019-2024 美信拓扑 | <a href='https://www.lanyingim.com' style='text-decoration:none!important;'>官网</a> | <a href='/sitemap.xml' style='text-decoration:none!important;' target='_blank'>网站地图</a>",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "simple-page-toc": {
+            "maxDepth": 3,
+            "skipFirstH1": true
+        },
+        "edit-link": {
+            "base": "https://github.com/maxim-top/gitbook-template/blob/master",
+            "label": "在GitHub上编辑"
+        },
+        "favicon": {
+            "shortcut": "/assets/favicon.ico",
+            "bookmark": "/assets/favicon.ico",
+            "appleTouch": "/assets/apple-touch-icon.png"
+        },
+        "terminal": {
+            "copyButtons": true,
+            "fade": false,
+            "style": "flat"
+        },
+        "sharing": {
+           "douban": true,
+           "facebook": false,
+           "google": false,
+           "hatenaBookmark": false,
+           "instapaper": false,
+           "line": false,
+           "linkedin": false,
+           "messenger": false,
+           "pocket": false,
+           "qq": true,
+           "qzone": false,
+           "stumbleupon": false,
+           "twitter": false,
+           "viber": false,
+           "vk": false,
+           "weibo": true,
+           "whatsapp": false,
+           "all": [
+               "facebook", "google", "twitter",
+               "weibo", "instapaper", "linkedin",
+               "pocket", "stumbleupon", "qq", "qzone","douban","line","whatsapp"
+           ]
+       },
+       "logo":{
+	        "logo": "/assets/logo.png",
+            "logoStyle": "height: 35px;align: left;",
+            "url": "https://www.lanyingim.com"
+	    },
+        "intopic-toc": {
+            "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3",
+            "mode": "nested",
+            "maxDepth": 3,
+            "isCollapsed": false,
+            "isScrollspyActive": true,
+            "visible": true,
+            "label": "内容"
+        },
+        "language-picker": {
+            "grid-columns": 3
+        },
+        "canonical-link": {
+            "baseURL": "https://docs.lanyingim.com"
+        },
+        "image-captions": {
+            "caption": "_CAPTION_"
+        },
+        "meta": {
+            "data": [
+                {
+                    "name": "keywords",
+                    "content": "蓝莺IM, 美信拓扑, IM SDK, 即时通讯, 即时通讯云, IM云服务, 移动IM, 开源IM, 企业IM, 聊天软件, 移动客服, 在线客服, IM业务场景, APP社交, 开发者服务, 直播聊天室, 实时音视频, 音视频, 直播平台, 美信反垃圾, 内容安全"
+                }
+            ]
+        },
+        "3-ba": {
+            "token": "e78e9e5952ccb5b1b443e429da5f0b03"
+        },
+        "ga4": {
+            "tag": "G-EE5J5LB4MD"
+        },
+        "lanying-grow-ai": {
+          "footer_note": "本文为知识分享和技术探讨之用，涉及到公司或产品（包括但不限于蓝莺IM）介绍内容仅为参考，具体产品和功能特性以官网开通为准。",
+          "lanying_link": "https://lanying.link/3qur4g",
+          "sitemap_hostname": "https://docs.lanyingim.com/"
+        }
+    }
+}
