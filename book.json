@@ -1,6 +1,6 @@
 {
-  "title": "AiPy 小百科——企业级 AI 应用开发知识中心",
-  "description": "企业级 AI 应用开发知识平台，持续分享 AI Agent、LLM、Workflow、MCP、多模态、Prompt Engineering 等内容。",
+  "title": "AiPy AI知识中心",
+  "description": "AiPy 企业级 AI Agent 平台，提供 Agent、Workflow、MCP、多模态、大模型开发等完整文档。",
   "author": "AiPy",
   "output.name": "site",
   "language": "zh-hans",
@@ -58,7 +58,7 @@
       "edit": true
     },
     "tbfed-pagefooter": {
-      "copyright": "© 2026 AiPy. All Rights Reserved. | <a href='https://www.aipyaipy.com/' target='_blank' style='text-decoration:none!important;'>官网</a> | <a href='/sitemap.xml' style='text-decoration:none!important;' target='_blank'>网站地图</a>",
+      "copyright": "© AiPy | AI Agent Platform",
       "modify_label": "该文件修订时间：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
@@ -141,7 +141,7 @@
       "data": [
         {
           "name": "keywords",
-          "content": "AiPy,AiPy小百科,AI Agent,LLM,MCP,Workflow,Prompt Engineering,RAG,多模态,AI应用开发,Python,FastAPI,AI开发,大语言模型"
+          "content": "AiPy,AI Agent,LLM,Workflow,MCP,Prompt,RAG,多模态"
         }
       ]
     },
@@ -152,8 +152,7 @@
       "tag": "G-51ZKVSS4LK"
     },
     "lanying-grow-ai": {
-      "footer_note": "本文内容由 AiPy 小百科整理发布，仅供学习交流与技术参考。涉及产品及技术能力请以官方最新信息为准。",
-      "lanying_link": "https://lanying.link/3qur4g",
+      "footer_note": "本文内容由 AiPy AI知识中心整理发布，仅供学习交流与技术参考。",
       "sitemap_hostname": "https://dmacse.site.chatai101.com/"
     }
   }
