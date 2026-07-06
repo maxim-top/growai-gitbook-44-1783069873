@@ -1,160 +1,160 @@
 {
-    "title": "AiPy小百科——企业级 AI 应用开发知识中心，涵盖 Agent、LLM、MCP、Workflow、多模态等核心技术。",
-    "description": "API文档及文章分享",
-    "author": "jinhai",
-    "output.name": "site",
-    "language": "zh-hans",
-    "gitbook": "3.2.3",
-    "root": ".",
-    "styles": {
-        "website": "assets/styles/website.css"
+  "title": "AiPy 小百科——企业级 AI 应用开发知识中心",
+  "description": "企业级 AI 应用开发知识平台，持续分享 AI Agent、LLM、Workflow、MCP、多模态、Prompt Engineering 等内容。",
+  "author": "AiPy",
+  "output.name": "site",
+  "language": "zh-hans",
+  "gitbook": "3.2.3",
+  "root": ".",
+  "styles": {
+    "website": "assets/styles/website.css"
+  },
+  "structure": {
+    "readme": "README.md"
+  },
+  "plugins": [
+    "edit-link@^2.0.2",
+    "fontsettings@^2.0.0",
+    "-sharing",
+    "sharing-plus@^0.0.2",
+    "-highlight",
+    "prism@^2.1.0",
+    "prism-themes@^0.0.2",
+    "-lunr",
+    "-search",
+    "advanced-emoji@^0.2.1",
+    "expandable-chapters-small@^0.1.7",
+    "terminal@^0.3.2",
+    "code@^0.1.0",
+    "splitter@^0.0.8",
+    "favicon@^0.0.2",
+    "github-tables@^0.0.2",
+    "image-captions@^3.1.0",
+    "canonical-link@^2.0.3",
+    "auto-scroll-table@^0.0.5",
+    "lanying-growai-logo@^0.0.3",
+    "lanying-grow-ai-intopic-toc@^1.1.3",
+    "lanying-grow-ai-meta@^0.1.16",
+    "3-ba@^0.9.0",
+    "ga4@^1.0.1",
+    "lanying-grow-ai@^1.0.13",
+    "lanying-grow-ai-theme@^1.0.9",
+    "lanying-grow-ai-expandable-chapters@^0.1.8",
+    "lanying-grow-ai-image-captions@^3.1.1",
+    "tbfed-pagefooter@^0.0.1"
+  ],
+  "pluginsConfig": {
+    "theme-default": {
+      "showLevel": false
     },
-    "structure": {
-        "readme": "README.md"
+    "prism": {
+      "css": [
+        "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+      ]
     },
-    "plugins": [
-        "edit-link@^2.0.2",
-        "fontsettings@^2.0.0",
-        "-sharing",
-        "sharing-plus@^0.0.2",
-        "-highlight",
-        "prism@^2.1.0",
-        "prism-themes@^0.0.2",
-        "-lunr",
-        "-search",
-        "advanced-emoji@^0.2.1",
-        "expandable-chapters-small@^0.1.7",
-        "terminal@^0.3.2",
-        "code@^0.1.0",
-        "splitter@^0.0.8",
-        "favicon@^0.0.2",
-        "github-tables@^0.0.2",
-        "image-captions@^3.1.0",
-        "canonical-link@^2.0.3",
-        "auto-scroll-table@^0.0.5",
-        "lanying-growai-logo@^0.0.3",
-        "lanying-grow-ai-intopic-toc@^1.1.3",
-        "lanying-grow-ai-meta@^0.1.16",
-        "3-ba@^0.9.0",
-        "ga4@^1.0.1",
-        "lanying-grow-ai@^1.0.13",
-        "lanying-grow-ai-theme@^1.0.9",
-        "lanying-grow-ai-expandable-chapters@^0.1.8",
-        "lanying-grow-ai-image-captions@^3.1.1",
-        "tbfed-pagefooter@^0.0.1"
-    ],
-    "pluginsConfig": {
-        "theme-default": {
-            "showLevel": false
-        },
-        "prism": {
-            "css": [
-                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-            ]
-        },
-        "include-codeblock": {
-            "template": "ace",
-            "unindent": true,
-            "edit": true
-        },
-        "tbfed-pagefooter": {
-            "copyright": "© 2019-2026 美信拓扑 | <a href='https://www.aipyaipy.com/' target='_blank' style='text-decoration:none!important;'>官网</a> | <a href='/sitemap.xml' style='text-decoration:none!important;' target='_blank'>网站地图</a>",
-            "modify_label": "该文件修订时间：",
-            "modify_format": "YYYY-MM-DD HH:mm:ss"
-        },
-        "simple-page-toc": {
-            "maxDepth": 3,
-            "skipFirstH1": true
-        },
-        "edit-link": {
-            "base": "https://github.com/maxim-top/growai-gitbook-44-1783069873/blob/master",
-            "label": "在GitHub上编辑"
-        },
-        "favicon": {
-            "shortcut": "/assets/favicon.ico",
-            "bookmark": "/assets/favicon.ico",
-            "appleTouch": "/assets/apple-touch-icon.png"
-        },
-        "terminal": {
-            "copyButtons": true,
-            "fade": false,
-            "style": "flat"
-        },
-        "sharing": {
-            "douban": true,
-            "facebook": false,
-            "google": false,
-            "hatenaBookmark": false,
-            "instapaper": false,
-            "line": false,
-            "linkedin": false,
-            "messenger": false,
-            "pocket": false,
-            "qq": true,
-            "qzone": false,
-            "stumbleupon": false,
-            "twitter": false,
-            "viber": false,
-            "vk": false,
-            "weibo": true,
-            "whatsapp": false,
-            "all": [
-                "facebook",
-                "google",
-                "twitter",
-                "weibo",
-                "instapaper",
-                "linkedin",
-                "pocket",
-                "stumbleupon",
-                "qq",
-                "qzone",
-                "douban",
-                "line",
-                "whatsapp"
-            ]
-        },
-        "logo": {
-            "logo": "/assets/logo.png",
-            "logoStyle": "height: 35px;align: left;",
-            "url": "https://www.aipyaipy.com/"
-        },
-        "intopic-toc": {
-            "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3",
-            "mode": "nested",
-            "maxDepth": 3,
-            "isCollapsed": false,
-            "isScrollspyActive": true,
-            "visible": true,
-            "label": "内容"
-        },
-        "language-picker": {
-            "grid-columns": 3
-        },
-        "canonical-link": {
-            "baseURL": "https://dmacse.site.chatai101.com"
-        },
-        "image-captions": {
-            "caption": "_CAPTION_"
-        },
-        "meta": {
-            "data": [
-                {
-                    "name": "keywords",
-                    "content": "AiPy,AiPy小百科,AI应用开发,AI Agent,智能体,LLM,大语言模型,MCP,Workflow,RAG,Prompt,多模态,企业级AI应用"
-                }
-            ]
-        },
-        "3-ba": {
-            "token": "e78e9e5952ccb5b1b443e429da5f0b03"
-        },
-        "ga4": {
-            "tag": "G-51ZKVSS4LK"
-        },
-        "lanying-grow-ai": {
-            "footer_note": "本文为知识分享和技术探讨之用，涉及到公司或产品（包括但不限于蓝莺IM）介绍内容仅为参考，具体产品和功能特性以官网开通为准。",
-            "lanying_link": "https://lanying.link/3qur4g",
-            "sitemap_hostname": "https://dmacse.site.chatai101.com/"
+    "include-codeblock": {
+      "template": "ace",
+      "unindent": true,
+      "edit": true
+    },
+    "tbfed-pagefooter": {
+      "copyright": "© 2026 AiPy. All Rights Reserved. | <a href='https://www.aipyaipy.com/' target='_blank' style='text-decoration:none!important;'>官网</a> | <a href='/sitemap.xml' style='text-decoration:none!important;' target='_blank'>网站地图</a>",
+      "modify_label": "该文件修订时间：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "simple-page-toc": {
+      "maxDepth": 3,
+      "skipFirstH1": true
+    },
+    "edit-link": {
+      "base": "https://github.com/maxim-top/growai-gitbook-44-1783069873/blob/master",
+      "label": "在GitHub上编辑"
+    },
+    "favicon": {
+      "shortcut": "/assets/favicon.ico",
+      "bookmark": "/assets/favicon.ico",
+      "appleTouch": "/assets/apple-touch-icon.png"
+    },
+    "terminal": {
+      "copyButtons": true,
+      "fade": false,
+      "style": "flat"
+    },
+    "sharing": {
+      "douban": true,
+      "facebook": false,
+      "google": false,
+      "hatenaBookmark": false,
+      "instapaper": false,
+      "line": false,
+      "linkedin": false,
+      "messenger": false,
+      "pocket": false,
+      "qq": true,
+      "qzone": false,
+      "stumbleupon": false,
+      "twitter": false,
+      "viber": false,
+      "vk": false,
+      "weibo": true,
+      "whatsapp": false,
+      "all": [
+        "facebook",
+        "google",
+        "twitter",
+        "weibo",
+        "instapaper",
+        "linkedin",
+        "pocket",
+        "stumbleupon",
+        "qq",
+        "qzone",
+        "douban",
+        "line",
+        "whatsapp"
+      ]
+    },
+    "logo": {
+      "logo": "/assets/logo.png",
+      "logoStyle": "height: 35px;align: left;",
+      "url": "https://www.aipyaipy.com/"
+    },
+    "intopic-toc": {
+      "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3",
+      "mode": "nested",
+      "maxDepth": 3,
+      "isCollapsed": false,
+      "isScrollspyActive": true,
+      "visible": true,
+      "label": "内容"
+    },
+    "language-picker": {
+      "grid-columns": 3
+    },
+    "canonical-link": {
+      "baseURL": "https://dmacse.site.chatai101.com"
+    },
+    "image-captions": {
+      "caption": "_CAPTION_"
+    },
+    "meta": {
+      "data": [
+        {
+          "name": "keywords",
+          "content": "AiPy,AiPy小百科,AI Agent,LLM,MCP,Workflow,Prompt Engineering,RAG,多模态,AI应用开发,Python,FastAPI,AI开发,大语言模型"
         }
+      ]
+    },
+    "3-ba": {
+      "token": "e78e9e5952ccb5b1b443e429da5f0b03"
+    },
+    "ga4": {
+      "tag": "G-51ZKVSS4LK"
+    },
+    "lanying-grow-ai": {
+      "footer_note": "本文内容由 AiPy 小百科整理发布，仅供学习交流与技术参考。涉及产品及技术能力请以官方最新信息为准。",
+      "lanying_link": "https://lanying.link/3qur4g",
+      "sitemap_hostname": "https://dmacse.site.chatai101.com/"
     }
+  }
 }

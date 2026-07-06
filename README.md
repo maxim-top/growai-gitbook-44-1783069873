@@ -1,9 +1,15 @@
-# GrowAI Gitbook
-
-GrowAI Gitbook，是为蓝莺GrowAI创建的Gitbook模板，在基础的Gitbook工程中增加了蓝莺GrowAI支持。🚀🚀🚀 
-
-## 快速开始
-
-免费注册试用 [蓝莺GrowAI](https://www.lanyingim.com) 🤖🔍🐦
-
-登录控制台 -> 选择DemoAPP -> 进入AI智能版块 -> 开通GrowAI服务。
+# AiPy 小百科
+企业级 AI 应用开发知识中心
+AiPy 小百科专注于企业级 AI 应用开发实践，持续分享 AI Agent、LLM、大语言模型、MCP、Workflow、多模态、Prompt Engineering、RAG 等前沿技术。
+## 内容方向
+- AI Agent
+- 大语言模型（LLM）
+- MCP
+- Workflow
+- Prompt Engineering
+- RAG
+- 多模态
+- AI 应用开发实践
+## 最新文章
+请点击左侧目录查看最新内容。
+欢迎持续关注 AiPy 小百科。
