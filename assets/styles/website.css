@@ -1,3 +1,5 @@
+/* AiPy 企业官网样式 */
+/* 基础样式 */
 .maximtop_summary {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -223,28 +225,75 @@
     background-color: #ccc;
     border: none;
 }
-/* AiPy 小百科品牌化样式优化 */
+/* AiPy 企业官网样式优化 */
+/* 首页标题样式 */
 .markdown-section h1 {
-    font-size: 2.2em;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #3498db;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+/* 副标题样式 */
+.markdown-section h1 + p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    text-align: center;
+    margin-bottom: 2em;
+}
+/* 二级标题样式 */
+.markdown-section h2 {
+    font-size: 1.8em;
     font-weight: 600;
     color: #2c3e50;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 0.3em;
-    margin-bottom: 0.8em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    border-left: 4px solid #3498db;
+    padding-left: 0.5em;
 }
-.markdown-section h2 {
-    font-size: 1.6em;
+/* 三级标题样式 */
+.markdown-section h3 {
+    font-size: 1.4em;
     font-weight: 500;
     color: #34495e;
     margin-top: 1.5em;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.8em;
 }
-.markdown-section h3 {
-    font-size: 1.3em;
-    font-weight: 500;
-    color: #34495e;
+/* 表格样式 */
+.markdown-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-/* 首页列表样式优化 */
+.markdown-section table th {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+.markdown-section table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.markdown-section table tr:hover {
+    background-color: #f5f5f5;
+}
+/* 链接样式 */
+.markdown-section a {
+    color: #3498db;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.markdown-section a:hover {
+    color: #2980b9;
+    border-bottom: 1px solid #2980b9;
+}
+/* 列表样式 */
 .markdown-section ul {
     list-style-type: disc;
     padding-left: 2em;
@@ -253,9 +302,51 @@
     margin-bottom: 0.5em;
     line-height: 1.8;
 }
-/* 页脚样式优化 */
+/* 代码块样式 */
+.markdown-section code {
+    background-color: #f8f8f8;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+.markdown-section pre {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+.markdown-section pre code {
+    background-color: transparent;
+    color: inherit;
+}
+/* 引用样式 */
+.markdown-section blockquote {
+    border-left: 4px solid #3498db;
+    padding-left: 1em;
+    margin-left: 0;
+    color: #7f8c8d;
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 0 5px 5px 0;
+}
+/* 页脚样式 */
 .page-footer {
-    margin-top: 2em;
-    padding-top: 1em;
-    border-top: 1px solid #eee;
+    margin-top: 3em;
+    padding-top: 1.5em;
+    border-top: 2px solid #3498db;
+    text-align: center;
+    color: #7f8c8d;
+}
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .markdown-section h1 {
+        font-size: 2em;
+    }
+    .markdown-section h2 {
+        font-size: 1.5em;
+    }
+    .markdown-section table {
+        font-size: 0.9em;
+    }
 }
