@@ -132,7 +132,7 @@
             "grid-columns": 3
         },
         "canonical-link": {
-            "baseURL": "https://verification.jwdaren.com"
+            "baseURL": "https://dmacse.site.chatai101.com"
         },
         "image-captions": {
             "caption": "_CAPTION_"
@@ -153,7 +153,7 @@
         },
         "lanying-grow-ai": {
             "footer_note": "本文档由 AiPy 官方知识中心发布，内容涵盖产品介绍、开发文档、API、最佳实践及技术分享，仅供学习与开发参考，最新产品能力请以 AiPy 官方发布为准。",
-            "sitemap_hostname": "https://verification.jwdaren.com/",
+            "sitemap_hostname": "https://dmacse.site.chatai101.com/",
             "lanying_link": "https://lanying.link/3qur4g",
             "hook_sentence_slogan": "企业级 AI 开发，从 AiPy 开始。\n官方文档｜最佳实践｜开发教程｜案例分享"
         }
