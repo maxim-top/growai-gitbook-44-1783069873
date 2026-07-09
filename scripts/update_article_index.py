@@ -122,8 +122,7 @@ def classify_article(title, filename):
     return "其他"
 def generate_latest_md(articles):
     """
-    生成 latest.md 内容
-    格式：列表形式，包含文章标题、链接、日期和分类
+    生成 latest.md 内容 - 按时间和主题规整排版
     """
     lines = []
     lines.append("# 最新文章")
@@ -131,56 +130,96 @@ def generate_latest_md(articles):
     lines.append("AiPy AI 知识中心持续更新 AI Agent、Workflow、MCP、LLM、RAG、多模态、Prompt Engineering 等技术内容。")
     lines.append("")
     
-    # 最新发布（最近 MAX_ARTICLES 篇）
-    lines.append("## 最新发布")
+    # 排除基础页面文档（非文章类）
+    article_exclude = {
+        "README.md", "latest.md", "index.md",
+        "about-aipy.md", "cases.md", "contact.md",
+        "what-is-aipy.md", "product-overview.md",
+        "agent-development.md", "workflow.md",
+        "mcp-development.md", "llm-development.md",
+        "prompt-engineering.md", "rag-practice.md",
+        "multimodal.md", "api-docs.md",
+        "quick-start.md", "best-practices.md",
+        "case-customer-service.md", "case-knowledge-base.md",
+        "case-office-automation.md",
+    }
+    
+    # 过滤出真正的文章
+    real_articles = [(f, fp, t, d, s) for f, fp, t, d, s in articles if f not in article_exclude]
+    
+    # ========== 第一部分：按日期分区 ==========
+    lines.append("## 📅 按时间发布")
     lines.append("")
     
-    recent = articles[:MAX_ARTICLES]
-    for filename, _, title, date, category in recent:
-        lines.append(f"- [{title}](./{filename})")
+    # 按日期分组
+    from collections import OrderedDict
+    date_groups = OrderedDict()
+    for filename, filepath, title, date_str, _ in real_articles:
+        if not date_str:
+            date_str = "未分类"
+        if date_str not in date_groups:
+            date_groups[date_str] = []
+        date_groups[date_str].append((filename, title))
     
+    for date_str in sorted(date_groups.keys(), reverse=True):
+        items = date_groups[date_str]
+        lines.append(f"### {date_str}")
+        lines.append("")
+        for filename, title in items:
+            lines.append(f"- [{title}](./{filename})")
+        lines.append("")
+    
+    # ========== 第二部分：按主题分类 ==========
+    lines.append("## 📂 按主题分类")
     lines.append("")
     
-    # 按分类汇总
-    lines.append("## 文章分类")
-    lines.append("")
+    # 定义分类关键词映射
+    category_keywords = {
+        "Agent 开发": ["agent", "智能体"],
+        "Workflow 编排": ["workflow", "工作流编排"],
+        "MCP 集成": ["mcp", "MCP"],
+        "RAG 实践": ["rag", "RAG"],
+        "多模态应用": ["多模态", "multimodal", "图片生成", "视觉", "pro"],
+        "LLM 与大模型": ["llm", "LLM", "deepseek", "DeepSeek", "大模型", "推理优化"],
+        "企业级应用": ["企业版", "企业级", "自动化", "enterprise"],
+        "Prompt Engineering": ["prompt", "Prompt"],
+    }
     
-    # 统计每个分类的文章
-    categorized = {}
-    for filename, _, title, date, category in articles:
-        if category not in categorized:
-            categorized[category] = []
-        categorized[category].append((filename, title, date))
+    categorized = {k: [] for k in category_keywords}
     
-    # 按分类输出
-    for category in ["Agent 开发", "Workflow", "MCP", "RAG", "多模态", "LLM", "Prompt Engineering", "其他"]:
-        if category in categorized and categorized[category]:
+    for filename, filepath, title, date_str, _ in real_articles:
+        assigned = False
+        for category, keywords in category_keywords.items():
+            combined = f"{title} {filename}".lower()
+            if any(k.lower() in combined for k in keywords):
+                categorized[category].append((filename, title))
+                assigned = True
+                break
+        if not assigned:
+            if "其他" not in categorized:
+                categorized["其他"] = []
+            categorized["其他"].append((filename, title))
+    
+    for category, items in categorized.items():
+        if items:
             lines.append(f"### {category}")
             lines.append("")
-            for filename, title, date in categorized[category]:
+            for filename, title in items:
                 lines.append(f"- [{title}](./{filename})")
             lines.append("")
+        else:
+            # 跳过空分类
+            pass
     
-    # 按日期归档
+    # 页脚
     lines.append("---")
     lines.append("")
-    lines.append("### 按日期归档")
-    lines.append("")
-    
-    dates = set()
-    for _, _, _, date, _ in articles:
-        dates.add(date)
-    for date in sorted(dates, reverse=True):
-        year_month = date[:7]
-        lines.append(f"- [{date}]({date.replace('-', '')}/README.md)")
-    
-    lines.append("")
-    lines.append("---")
     lines.append("*持续更新中，敬请关注*")
     lines.append("*© 2026 AiPy | AI Agent Platform*")
     lines.append("")
     
     return "\n".join(lines)
+
 def update_summary(articles):
     """
     更新 SUMMARY.md 中的「博客 → 最新文章」部分
