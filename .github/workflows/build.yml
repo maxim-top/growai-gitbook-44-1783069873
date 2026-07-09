@@ -57,6 +57,13 @@ jobs:
         cd ${{ github.workspace }}
         make refine
 
+    - name: Replace GrowAI with AiPy in generated HTML
+      run: |
+        cd ${{ github.workspace }}
+        # 替换所有 HTML 中的 'GrowAI' 为 'AiPy'(保留上下文)
+        find _book -name '*.html' -exec sed -i 's/蓝莺GrowAI/AiPy小百科/g' {} +
+        find _book -name '*.html' -exec sed -i 's/GrowAI/AiPy/g' {} +
+        echo "✅ GrowAI 替换完成"
     - name: create book.tar.gz
       run: tar czf book.tar.gz _book
 
