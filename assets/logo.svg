@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="50" fill="#3498db"/>
-  <text x="100" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">AiPy</text>
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="5" width="40" height="40" rx="8" fill="url(#aiGrad)"/>
+  <text x="20" y="33" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">Ai</text>
+  <text x="50" y="33" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">Py</text>
+  <text x="50" y="46" font-family="Arial, sans-serif" font-size="10" fill="#64748b">小百科</text>
 </svg>
