@@ -41,6 +41,11 @@ jobs:
         cd ${{ github.workspace }}
         gitbook install
 
+    - name: Update Article Index
+      run: |
+        cd ${{ github.workspace }}
+        python scripts/update_article_index.py
+
     - name: Build GitBook
       run: |
         cd ${{ github.workspace }}
