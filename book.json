@@ -137,14 +137,18 @@
         "image-captions": {
             "caption": "_CAPTION_"
         },
-        "meta": {
-            "data": [
-                {
-                    "name": "keywords",
-                    "content": "AiPy,AiPy小百科,AI应用开发,AI Agent,智能体,LLM,大语言模型,MCP,Workflow,RAG,Prompt,多模态,企业级AI应用"
-                }
-            ]
-        },
+"meta": {
+  "data": [
+    {
+      "name": "keywords",
+      "content": "AiPy,AiPy小百科,AI Agent,LLM,MCP,Workflow,Prompt Engineering,RAG,多模态,AI应用开发,Python,FastAPI,AI开发,大语言模型"
+    },
+    {
+      "name": "baidu-site-verification",
+      "content": "codeva-LVXBuOyPYe"
+    }
+  ]
+},
         "3-ba": {
             "token": "e78e9e5952ccb5b1b443e429da5f0b03"
         },
