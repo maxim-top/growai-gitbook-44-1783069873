@@ -65,16 +65,19 @@ jobs:
         find _book -name '*.html' -exec sed -i 's/GrowAI/AiPy/g' {} +
         echo "✅ GrowAI 替换完成"
 
-    - name: Ensure Baidu site verification in release output
+    - name: Ensure search engine site verification in release output
       run: |
         cd ${{ github.workspace }}
         if ! grep -Fq 'codeva-LVXBuOyPYe' _book/index.html; then
           sed -i 's#<head>#<head>\n    <meta name="baidu-site-verification" content="codeva-LVXBuOyPYe">#' _book/index.html
         fi
         cp baidu_verify_codeva-LVXBuOyPYe.html _book/baidu_verify_codeva-LVXBuOyPYe.html
+        cp google0400bae7c6c77b27.html _book/google0400bae7c6c77b27.html
         grep -Fq '<meta name="baidu-site-verification" content="codeva-LVXBuOyPYe">' _book/index.html
         cmp -s baidu_verify_codeva-LVXBuOyPYe.html _book/baidu_verify_codeva-LVXBuOyPYe.html
-        echo "✅ Baidu verification tag and file are present in release output"
+        cmp -s google0400bae7c6c77b27.html _book/google0400bae7c6c77b27.html
+        grep -Fq 'google-site-verification: google0400bae7c6c77b27.html' _book/google0400bae7c6c77b27.html
+        echo "✅ Baidu and Google verification resources are present in release output"
 
     - name: create book.tar.gz
       run: tar czf book.tar.gz _book
