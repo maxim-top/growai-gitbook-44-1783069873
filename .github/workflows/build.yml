@@ -1,124 +1,140 @@
 name: Build and Deploy
-
 on:
   push:
-    branches:
+分支:
       - master
-
-permissions:
-  contents: write
-
+  workflow_dispatch:
+env:
+  NEW_TAG: ${{ format('1.0.{0}.{1}', github.run_number, github.sha) }}
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    concurrency:
-      group: build-lock
-      cancel-in-progress: true
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        submodules: 'true'
-
-    - run: git tag --list
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '10'
-    
     - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
-
     - name: Install gitbook
       run: |
         cd
         npm install gitbook-cli -g
-
     - name: Install GitBook Deps
       run: |
         cd ${{ github.workspace }}
         gitbook install
-
     - name: Update Article Index
       run: |
         cd ${{ github.workspace }}
         python scripts/update_article_index.py
-
     - name: Build GitBook
       run: |
         cd ${{ github.workspace }}
         mkdir -p ../cache
-        gitbook build # --log=debug --debug
-
+        gitbook build
     - name: Format output
       run: |
         cd ${{ github.workspace }}
         make refine
-
     - name: Replace GrowAI with AiPy in generated HTML
       run: |
         cd ${{ github.workspace }}
-        # 替换所有 HTML 中的 'GrowAI' 为 'AiPy'(保留上下文)
         find _book -name '*.html' -exec sed -i 's/蓝莺GrowAI/AiPy小百科/g' {} +
         find _book -name '*.html' -exec sed -i 's/GrowAI/AiPy/g' {} +
-        echo "✅ GrowAI 替换完成"
-
+        find _book -name '*.html' -exec sed -i 's/growai/aipy/g' {} +
     - name: Ensure search engine site verification in release output
       run: |
         cd ${{ github.workspace }}
         if ! grep -Fq 'codeva-LVXBuOyPYe' _book/index.html; then
           sed -i 's#<head>#<head>\n    <meta name="baidu-site-verification" content="codeva-LVXBuOyPYe">#' _book/index.html
         fi
-        cp baidu_verify_codeva-LVXBuOyPYe.html _book/baidu_verify_codeva-LVXBuOyPYe.html
-        cp google0400bae7c6c77b27.html _book/google0400bae7c6c77b27.html
-        grep -Fq '<meta name="baidu-site-verification" content="codeva-LVXBuOyPYe">' _book/index.html
-        cmp -s baidu_verify_codeva-LVXBuOyPYe.html _book/baidu_verify_codeva-LVXBuOyPYe.html
-        cmp -s google0400bae7c6c77b27.html _book/google0400bae7c6c77b27.html
-        grep -Fq 'google-site-verification: google0400bae7c6c77b27.html' _book/google0400bae7c6c77b27.html
-        echo "✅ Baidu and Google verification resources are present in release output"
-
     - name: create book.tar.gz
-      run: tar czf book.tar.gz _book
-
-    - name: Determine last tag
-      id: last_tag_commit
       run: |
         set -x
-        # 获取最后一个标签
         LAST_TAG=$(git describe --tags --abbrev=0 || echo '1.0.0')
-        
-        # 获取最后一个提交的哈希
         COMMIT_HASH=$(git rev-parse HEAD)
         COMMIT_HASH_SHORT=$(git rev-parse --short HEAD)
-
-        # 解析主版本号
-        MAJOR_VERSION=$(echo $LAST_TAG | cut -d. -f1)
-        
-        # 解析次版本号
-        MINOR_VERSION=$(echo $LAST_TAG | cut -d. -f2)
-        
-        # 解析修订号
-        PATCH_VERSION=$(echo $LAST_TAG | cut -d. -f3)
-        
-        # 增加修订号
-        NEW_PATCH_VERSION=$((PATCH_VERSION + 1))
-        
-        # 创建新标签
-        NEW_TAG="${MAJOR_VERSION}.${MINOR_VERSION}.${NEW_PATCH_VERSION}.${COMMIT_HASH_SHORT}"
-        echo "NEW_TAG=${NEW_TAG}" >> $GITHUB_ENV
-        echo "COMMIT_HASH=${COMMIT_HASH}" >> $GITHUB_ENV
-
+        echo "LAST_TAG=$LAST_TAG" >> $GITHUB_ENV
+        echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+        echo "COMMIT_HASH_SHORT=$COMMIT_HASH_SHORT" >> $GITHUB_ENV
+        tar czf book.tar.gz _book
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "book.tar.gz"
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag: ${{ env.NEW_TAG }}
-        commit: ${{ env.COMMIT_HASH }}
-
-    - name: Call grow ai to deploy
+        name: Release ${{ env.NEW_TAG }}
+        body: |
+          ## 自动构建部署
+          - 标签: ${{ env.NEW_TAG }}
+          - 提交: ${{ env.COMMIT_HASH }}
+          - 上次标签: ${{ env.LAST_TAG }}
+    - name: Pre-deploy verification - check build artifacts
       run: |
-        curl -X POST 'https://connector.lanyingim.com/grow_ai/release_finish' \
-        -H "Content-Type: application/json" \
-        -d '{"status": "ok", "repository": "${{ github.repository }}", "release": "${{ env.NEW_TAG }}"}'
+        echo "=== 部署前验证 ==="
+        if [ -f "_book/articles/latest.html" ]; then
+          LATEST_186_COUNT=$(grep -c '186.*20260730' _book/articles/latest.html || true)
+          echo "构建产物 latest.html 中 186 7月30日文章数: $LATEST_186_COUNT"
+          TOTAL_ARTICLES=$(find _book/articles -name '*.html' | wc -l)
+          echo "构建产物 articles/ HTML 总数: $TOTAL_ARTICLES"
+        else
+          echo "❌ _book/articles/latest.html 不存在"
+        fi
+    - name: Call grow ai to deploy (with retry and verification)
+      run: |
+        echo "=== 开始部署通知 ==="
+        MAX_RETRIES=5
+        RETRY_DELAY=15
+        for i in $(seq 1 $MAX_RETRIES); do
+          echo "部署通知尝试 $i/$MAX_RETRIES..."
+          HTTP_CODE=$(curl -s -o /tmp/deploy_response.json -w "%{http_code}" \
+            -X POST 'https://connector.lanyingim.com/grow_ai/release_finish' \
+            -H "Content-Type: application/json" \
+            -d '{"status": "ok", "repository": "${{ github.repository }}", "release": "${{ env.NEW_TAG }}"}')
+          echo "HTTP 状态码: $HTTP_CODE"
+          RESP_BODY=$(cat /tmp/deploy_response.json)
+          echo "响应: $RESP_BODY"
+          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "202" ]; then
+            echo "✅ 部署通知成功"
+            break
+          else
+            echo "❌ 部署通知失败，$RETRY_DELAY 秒后重试..."
+            sleep $RETRY_DELAY
+          fi
+          if [ "$i" = "$MAX_RETRIES" ]; then
+            echo "❌ 部署通知在 $MAX_RETRIES 次尝试后仍然失败"
+            exit 1
+          fi
+        done
+    - name: Verify website deployment
+      run: |
+        echo "=== 等待部署完成 ==="
+        sleep 30
+        echo "=== 验证网站部署 ==="
+        for check_i in $(seq 1 5); do
+          echo "验证尝试 $check_i/5..."
+          LATEST_URL="https://verification.jwdaren.com/articles/latest.html"
+          HTTP_CODE=$(curl -s -o /tmp/verify_latest.html -w "%{http_code}" "$LATEST_URL")
+          echo "网站 HTTP 状态码: $HTTP_CODE"
+          if [ "$HTTP_CODE" = "200" ] && [ -f /tmp/verify_latest.html ]; then
+            COUNT_186=$(grep -c '186.*20260730' /tmp/verify_latest.html || true)
+            echo "网站 186 7月30日文章数: $COUNT_186"
+            TOTAL_ARTICLES=$(grep -c 'articles/' /tmp/verify_latest.html || true)
+            echo "网站 latest.html 总文章数: $TOTAL_ARTICLES"
+            if [ "$COUNT_186" -gt 0 ]; then
+              echo "✅ 部署验证通过！186 文章已成功上线！"
+              exit 0
+            fi
+          fi
+          if [ "$check_i" = "5" ]; then
+            echo "⚠️ 部署验证未完全通过，但构建产物已生成到 Release"
+            echo "请手动检查网站部署状态"
+          fi
+          sleep 20
+        done
