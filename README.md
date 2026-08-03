@@ -60,4 +60,4 @@ AiPy 是企业级 AI 应用开发平台，帮助企业快速构建 AI 应用。
 - [入门指南](articles/quick-start.md)
 ---
 © 2026 AiPy. All Rights Reserved.
-<!-- Trigger deployment for Baidu verification -->
+<!-- Trigger deployment for Baidu verification 2026-08-03 -->
