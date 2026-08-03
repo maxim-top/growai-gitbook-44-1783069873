@@ -19,7 +19,7 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = PROJECT_DIR / "articles"
 SUMMARY_FILE = PROJECT_DIR / "SUMMARY.md"
 LATEST_FILE = ARTICLES_DIR / "latest.md"
-MAX_ARTICLES = 20
+MAX_ARTICLES = 500
 # 需要排除的文件（不纳入文章列表）
 EXCLUDE_FILES = {
     "README.md",
