@@ -1,9 +1,11 @@
 name: Build and Deploy
 on:
   push:
-分支:
+branches:
       - master
   workflow_dispatch:
+permissions:
+  contents: write
 env:
   NEW_TAG: ${{ format('1.0.{0}.{1}', github.run_number, github.sha) }}
 jobs:
